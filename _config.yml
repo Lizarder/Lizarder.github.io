@@ -13,7 +13,7 @@ baseurl: ""                             # for example, '/blog' if your blog host
 # SNS settings
 RSS: false
 #weibo_username:     
-zhihu_username:     ANFX
+zhihu_username:     nfx-11
 github_username:    Lizarder
 #twitter_username:  
 #facebook_username:  
@@ -96,7 +96,7 @@ friends: [
         title: "CGW",
         href: "http://www.cgw.com/CGW-Blog.aspx/"
     },{
-        title: "computer graph",
+        title: "computer-graph",
         href: "https://www.journals.elsevier.com/computers-and-graphics/"
     },{
         title: "MathWorld理论仓库",
