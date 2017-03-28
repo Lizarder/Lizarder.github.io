@@ -2,7 +2,7 @@
 title: Welcome to Lizarder's Blog
 SEOTitle: Blog of Lizarder | Lizarder's Blog
 header-img: img/home-bg.jpg
-email: 3192133718@qq.com
+email: OmyDog0216@gmail.com
 description: "Game Develop && Fan of @CG && ..."
 keyword: "3D Game-developer computer-graph Shader Render "
 url: "lizarder.github.io"              # your host, for absolute URL
@@ -13,10 +13,10 @@ baseurl: ""                             # for example, '/blog' if your blog host
 # SNS settings
 RSS: false
 #weibo_username:     
-zhihu_username:     NFX
+zhihu_username:     ANFX
 github_username:    Lizarder
-#twitter_username:  huxpro
-#facebook_username:  huxpro
+#twitter_username:  
+#facebook_username:  
 # linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -90,37 +90,19 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "Su",
-        href: "http://su.gallery/"
+        title: "Shader-toy",
+        href: "https://www.shadertoy.com/"
     },{
-        title: "乱序",
-        href: "http://mida.re/"
+        title: "CGW",
+        href: "http://www.cgw.com/CGW-Blog.aspx/"
     },{
-        title: "前端外刊评论",
-        href: "http://qianduan.guru/"
+        title: "computer graph",
+        href: "https://www.journals.elsevier.com/computers-and-graphics/"
     },{
-        title: "天镶的博客",
-        href: "http://lingyu.wang/"
+        title: "MathWorld理论仓库",
+        href: "http://mathworld.wolfram.com/"
     },{
-        title: "Luke 的自留地",
-        href: "http://hmqk1995.github.io"
-    },{
-        title: "Ebn's Blog",
-        href: "http://ebnbin.com/"
-    },{
-        title: "SmdCn's Blog",
-        href: "http://blog.smdcn.net"
-    },{
-        title: "解旻的博客",
-        href: "http://xieminis.me/"
-    },{
-        title: "DHong Say",
-        href: "http://dhong.co"
-    },{
-        title: "尹峰以为",
-        href: "http://ingf.github.io/"
-    },{
-        title: "前端神盾局",
-        href: "http://wepiaofei.github.io/blog/"
+        title: "中国知网",
+        href: "http://www.cnki.net/"
     }
 ]
