@@ -1,3 +1,3 @@
-#Lizarder's Blog
+# Lizarder's Blog
 
-###this blog is created with boilerplate of [Hux Blog](https://github.com/Huxpro/huxpro.github.io)
+### this blog is created with boilerplate of [Hux Blog](https://github.com/Huxpro/huxpro.github.io)
