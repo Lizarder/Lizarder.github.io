@@ -1,14 +1,14 @@
 {
     "name": "lizarder-blog",
     "title": "Lizarder Blog",
-    "author": "Lizarder <lizarderpro@gmail.com>",
+    "author": "Lizarder <OmyDog0216@gmail.com>",
     "version": "1.7.0",
     "homepage": "http://lizarderpro.github.io",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Lizarderpro/lizarderpro.github.io"
+        "url": "https://github.com/Lizarder/lizarder.github.io"
     },
-    "bugs": "https://github.com/Lizarderpro/lizarderpro.github.io/issues",
+    "bugs": "https://github.com/Lizarder/lizarder.github.io/issues",
     "devDependencies": {
         "grunt": "~0.4.5",
         "grunt-contrib-less": "~0.11.4",
