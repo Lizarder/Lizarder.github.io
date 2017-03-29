@@ -27,12 +27,12 @@ body, html {
 }
 
 @font-face {
-	font-family: 'huxico';
-	src:url('../fonts/huxico.eot');
-	src:url('../fonts/huxico.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/huxico.woff') format('woff'),
-		url('../fonts/huxico.ttf') format('truetype'),
-		url('../fonts/huxico.svg#huxico') format('svg');
+	font-family: 'lizarderico';
+	src:url('../fonts/lizarderico.eot');
+	src:url('../fonts/lizarderico.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/lizarderico.woff') format('woff'),
+		url('../fonts/lizarderico.ttf') format('truetype'),
+		url('../fonts/lizarderico.svg#lizarderico') format('svg');
 	font-weight: normal;
 	font-style: normal;
 } /* Made with http://icomoon.io/ */
@@ -101,7 +101,7 @@ body, html {
 .cbp_tmtimeline > li .cbp_tmicon {
 	width: 40px;
 	height: 40px;
-	font-family: 'huxico';
+	font-family: 'lizarderico';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -123,27 +123,27 @@ body, html {
 
 .cbp_tmicon-phone:before {
 	content: "\e004";
-	font-family: 'huxico';
+	font-family: 'lizarderico';
 }
 
 .cbp_tmicon-screen:before {
 	content: "\e005";
-	font-family: 'huxico';
+	font-family: 'lizarderico';
 }
 
 .cbp_tmicon-html:before {
 	content: "\e001";
-	font-family: 'huxico';
+	font-family: 'lizarderico';
 }
 
 .cbp_tmicon-video:before {
 	content: "\e002";
-	font-family: 'huxico';
+	font-family: 'lizarderico';
 }
 
 .cbp_tmicon-font:before {
 	content: "\e003";
-	font-family: 'huxico';
+	font-family: 'lizarderico';
 }
 
 /** Venders Logo **/
@@ -183,7 +183,7 @@ body, html {
 	background-size: 22px;
 }
 
-/******* Hux Branch *****/
+/******* Lizarder Branch *****/
 html{
 	font-size: 90%;
 }
@@ -224,12 +224,12 @@ header img{
 	width: 175px;
 }
 
-.cbp_tmlabel .hux_ul{
+.cbp_tmlabel .lizarder_ul{
 	border:none;
 	padding:0;
 	margin:0;
 }
-.cbp_tmlabel .hux_ul li{
+.cbp_tmlabel .lizarder_ul li{
 	padding:0;
 	margin: 0;
 	list-style: none;
