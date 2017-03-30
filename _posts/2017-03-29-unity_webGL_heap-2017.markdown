@@ -24,7 +24,7 @@ tags:
 
 #### 概览
 下面这张图显示了浏览器中unity webgl内存配置情况:
-![post_unity_webgl_memory](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_webgl_memory.png)
+![post_unity_webgl_memory](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_webgl_memory.png)
 
 <p id = "build"></p>
 ---
@@ -88,7 +88,7 @@ PlayerSettings.SetPropertyString("additionalIl2CppArgs", "--emit-null-checks --e
 #### 资源(Asset Data)
 
 在其他平台上，应用程序可以永久的存取硬盘上的内容，但在网页是没有实际的文件系统所以是不可能的，因此，一旦Unity WebGL的数据(.data档案)被下载完成后，它就会存在内存里。缺点是和其他平台相比它需要额外的内存(从5.3开始.data的档案会压缩成lz4放在内存)。例如这个Profiler说明，256mb的Unity heap会产生约40mb的.data档案。
-![unity_memory_p1](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p1.png)
+![unity_memory_p1](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p1.png)
  
 甚么是.data档案?他是Unity产生的文件组合:data.unity3d(全部的场景，有依赖关系的资源和Resources目录底下的所有东西)，unity_default_resources和引擎所需要的一些小档案。
 
@@ -109,7 +109,7 @@ File.WriteAllBytes(Application.temporaryCachePath + "/buffer.bytes", buffer);
 ```
 
 这个档案会写到内存里，也可以在浏览器的profiler找到:
-![unity_memory_p2](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p2.png)
+![unity_memory_p2](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p2.png)
 
 这段Unity heap的内存是256mb
 
@@ -123,10 +123,10 @@ File.WriteAllBytes(Application.temporaryCachePath + "/buffer.bytes", buffer);
 现在需要用到Asset Bundle，然后该怎么做?将所有的资源打包成一包Asset Bundle?
 
 千万不要!就算这样能降低网页的加载时间，还是需要下载(可能超大)这个Asset Bundle，导致内存飙高。来看看下载AB之前的内存用量:
-![unity_memory_p3](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p3.png)
+![unity_memory_p3](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p3.png)
 
 如看到的，256mb被Unity heap定义了。这是下载了AB之后还没有放入暂存。
-![unity_memory_p4](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p4.png)
+![unity_memory_p4](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p4.png)
 
 现在看到的是一个额外的缓冲区，大约是同等于硬盘上的65mb，由XHR分配。这只是一个临时的缓冲区但是他可能造成内存几祯的尖峰，直到GC(garbagecollect)回收它。
 
@@ -140,18 +140,18 @@ File.WriteAllBytes(Application.temporaryCachePath + "/buffer.bytes", buffer);
 WebGL的Asset Bundle外取和在其他平台一样用WWW.LoadFromCacheOrDownload，虽然有一个明显的不同是这是放在内存的。在Unity WebGL里AB的快取依赖IndexedDB，被放在内存文件系统里的emscripten编译程序支持。
 
 来看看用LoadFromCacheOrDownload下载AssetBundle之前的内存抓图:
-![unity_memory_p5](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p5.png)
+![unity_memory_p5](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p5.png)
 
 如所见，512mb被Unity heap用掉了，4mb左右其他分配。包被载入之后的图:
-![unity_memory_p6](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p6.png)
+![unity_memory_p6](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p6.png)
 
 额外的内存需求上升至167mb左右，这是这个AssetBundle额外需要的内存(原本是64mb压缩包)。然后下图是js vm做完GC之后的图:
-![unity_memory_p7](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p7.png)
+![unity_memory_p7](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p7.png)
 
 结果好多了，但仍需要85mb左右，大多数的内存用来存放AssetBundle，这些内存就算用unload去释放到结束都无法取回内存。还有，当玩家第二次用浏览器打开内容时，不管之前是否有分配过区块，这些内存又会再次被分配。
 
 这是来自Chrome的内存快照参考:
-![unity_memory_p8](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p8.png)
+![unity_memory_p8](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p8.png)
 
 在Unity heap之外还有一个Asset bundle系统所需要快取相关的临时分配。坏消息是最近发现它比预期的大很多，预期会在Unity 5.5 beta 4, 5.3.6p6和5.4.1p2修复这个问题。
 
@@ -174,7 +174,7 @@ UnityWebGL的音效是有别于其他平台的，这和内存会有什么关联?
 
 Unity将在JavaScript上支持建立特定的AudioBuffer对象，用来更方便播放网页音效。
 由于WebAudio缓冲区存在Unity heap外面，因此无法用Unity profiler追踪，需要用特定的浏览器工具来检查内存查看有多少用在音效上。这个例子用Firefox来查询音效内存用量:
-![unity_memory_p9](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p9.png)
+![unity_memory_p9](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p9.png)
 
 考虑到这些音效缓冲存放未压缩的数据，不太适合放超大型的声音文件(例如:很长的背景音乐)。所以现在可能需要写些自己的js套件来使用<audio>标签，这样声音文件压缩用较少的内存。
  
@@ -200,7 +200,7 @@ Unity将在JavaScript上支持建立特定的AudioBuffer对象，用来更方便
 另外值得注意的是任何不是16的倍数的值都将被自动四舍五入(执行期间)为下一个16的倍数，这是Emscripten编译程序所要求的。
 
 WebGL Memory Size(mb)设定将决定产生html中TOTAL_MEMORY(bytes)的值。
-![unity_memory_p10](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p10.png)
+![unity_memory_p10](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p10.png)
 
 在不重新打包项目的前提下要测试内存堆栈的值，建议使用编辑html的方式。一旦找到适合的值，只需在Unity项目设定中更改WebGL Memory Size即可。
 
@@ -210,14 +210,14 @@ WebGL Memory Size(mb)设定将决定产生html中TOTAL_MEMORY(bytes)的值。
 
 ##### 执行时发生内存溢位，如何修复？
 这要看是Unity还是浏览器的内存溢位。错误信息会指出问题所在和解决办法，“如果是开发者，可以透过在WebGL设定中为项目分配更多(或更少)的内存来解决。”可以依据此来调整WebGL内存大小。然而还有很多可以解决内存溢位的方法。如果出现以下错误信息：
-![unity_memory_p11](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p11.png)
+![unity_memory_p11](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p11.png)
  
 除了讯息所提之外，还可以尝试减少程序和数据的大小。因为当浏览器加载网页时，它会尝试为一些内容寻找空余的内存，其中最重要的是：代码，数据，Unity heap和被编译的asm.js。它们可能相当大，尤其是数据和Unity heap内存，这对32位浏览器来说可能是问题。
  
 在一些例子中，尽管有足够的内存，浏览器仍加载失败，因为内存是碎片化的。这就是为什么有时候内容可能在重新启动浏览器之后，可以成功加载的原因。
 
 另一种情况是，当Unity 内存溢位时提示以下讯息：
-![unity_memory_p12](http://127.0.0.1:4000/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p12.png)
+![unity_memory_p12](https://lizarder.github.io/img/2017-03-29-unity_webGL_heap-2017/post_unity_memory_p12.png)
  
 这种情况下就需要优化Unity项目。
  
